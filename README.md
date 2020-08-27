@@ -26,4 +26,4 @@ See how the parser works: <http://grandfatherpies.team/>
 
 ## Other application 
 ### ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `springerMetaInfo.exe` or `springerMetaInfo.elf`
-> The parser in language **Golang**. .elf for **OS Linux** and .exe for **OS Windows** Information about this application is located on this repository: [Click](https://github.com/akmubi/springerMetaParserUltraDoNotUse)
+> The parser in language **Golang**. .elf for **OS Linux** and .exe for **OS Windows**. Information about this application is located on this repository: [Click](https://github.com/akmubi/springerMetaParserUltraDoNotUse)
