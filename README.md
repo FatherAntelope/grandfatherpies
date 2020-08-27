@@ -1,4 +1,4 @@
-# ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `GrandFatherPies Parser`
+# ![#f03c15] GrandFatherPies Parser
 Web application for searching queries in the database and parser
 
 ## Link
