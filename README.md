@@ -7,4 +7,5 @@ See how the parser works: <http://grandfatherpies.team/>
 ## File description 
 ### index.php
 > Home page of the app
+
 A search query is sent here
