@@ -3,10 +3,10 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/aws.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/settingAWS.php';
 
-//$db = new DynamoDataBase($access_key, $secret_key, $region);
-//$attributes = "ID, Title, Abstract, Authors, Publisher, PublicationName, PublicationDate, Link, PDFLink";
-//$tableData = $db->getTableData($tableName, $attributes, $limit, $_SESSION['keywords']);
-
+/**
+ * If if there is data, then we record the saved session
+ * Else write the error as STRING
+ */
 if (isset($_SESSION['resultsSearch']))
     $tableData = $_SESSION['resultsSearch'];
 else
@@ -32,7 +32,7 @@ else
 <body style="background-image: url('background.png');">
 
 <div class="ui inverted segment attached" style="position: sticky; z-index: 100">
-    <!------------------Верхний заголовок------------------>
+    <!------------------Top header------------------>
     <form class="ui container" id="resultForm">
         <div class="field">
             <a href="/">
@@ -41,11 +41,11 @@ else
 
             <div class="ui fluid action input">
                 <input type="text" placeholder="Ключевые слова" name="keywords"  value="<? if(isset($_SESSION['keywords'])) echo $_SESSION['keywords']; ?>" required>
-                <!------------------Длинная анимационная кнопка------------------>
+                <!------------------The long animation button------------------>
                 <button type="submit" class="ui animated teal button">
-                    <!------------------Текст, если кнопка не выделена------------------>
+                    <!------------------Show this text if the button inactive------------------>
                     <div class="visible content">Найти</div>
-                    <!------------------Текст, если кнопка выделена------------------>
+                    <!------------------Show this icon if the button active------------------>
                     <div class="hidden content">
                         <i class="search icon"></i>
                     </div>
@@ -53,35 +53,19 @@ else
             </div>
         </div>
         <br>
+        <!------------------Search filter settings------------------->
         <div class="ui inverted accordion">
             <div class="title">
                 <i class="dropdown teal icon"></i>
                 Дополнительно
             </div>
             <div class="content">
-                <!--
-                <div class="ui form hint" data-content="Максимальное количество страниц поиска">
-                    <div class="field two wide">
-                        <input type="number" class="two wide" value="100" name="maxpages" required>
-                    </div>
-                </div>
-
-                <div class="ui checkbox hint" data-content="Выдает только те результаты, которые содержат PDF-документы">
-                    <input type="checkbox" name="openaccess">
-                    <label style="color: #FFFFFFE6">Общедоступные публикации</label>
-                </div>
-
-                <div class="ui checkbox" style="margin-left: 20px; margin-bottom: 15px; margin-top: 15px">
-                    <input type="checkbox" name="bucketname">
-                    <label style="color: #FFFFFFE6">Импортировать документы в базу данных</label>
-                </div>
-                -->
                 <div class="ui checkbox hint" style="margin-bottom: 15px; margin-top: 5px" data-content="Задействовать парсер, если слова не найдены">
                     <input type="checkbox" name="parseractive">
                     <label style="color: #FFFFFFE6">Парсер</label>
                 </div>
 
-                <!------------------Радиобоксы выбора языка поиска------------------>
+                <!------------------Radioboxex for language selection------------------>
                 <div class="ui form">
                     <div class="inline fields">
                         <label style="color: #FFFFFFE6">Язык поиска:</label>
@@ -116,6 +100,10 @@ else
 
 <div class="ui container" style="margin-top: 10px; margin-bottom: 10px">
     <?
+    /**
+     * if the connection to the table did not cause an error then show the results, if they are (count!=0)
+     * else display this error to the user on the screen
+     */
     if(gettype($tableData) != "string"){
         if($tableData['Count'] != 0) {
             echo "<p>Найдено: {$tableData['Count']}</p>";
@@ -222,10 +210,19 @@ else
 <div class="ui page dimmer" id="loadShow">
     <div class="segment">
         <div class="ui active dimmer">
-            <div class="ui massive text loader">Выполняем запрос...</div>
+            <h2 class="ui icon header" style="color: white">
+                <i class="spinner loading icon"></i>
+                <div class="content">
+                    Выполняем поиск запроса...
+                    <div class="sub header" style="color: #cbcbcb">
+                        Если вы активировали парсер, то это займет некоторое время
+                    </div>
+                </div>
+            </h2>
         </div>
     </div>
 </div>
+
 </body>
 <script>
     $('.ui.accordion')

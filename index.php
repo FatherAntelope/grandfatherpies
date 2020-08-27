@@ -14,11 +14,10 @@
 </head>
 <body style="background-image: url('background.png');">
 
-    <!------------------Белый блок (сегмент)------------------>
+    <!------------------White box (segment)------------------>
     <form method="post" id="resultForm">
         <div class="ui inverted segment  raised" style="width: 1000px; position: absolute; left: 50%; top:30%; margin-left: -500px;">
-            <!------------------Верхний заголовок------------------>
-
+            <!------------------Top header (Name Project)------------------>
             <h2 class="ui icon center aligned header green">
                 <div class="content">GrandFatherPies Parser</div>
             </h2>
@@ -26,13 +25,14 @@
                 <a href="/">
                     <img class="ui mini left floated image" src="/logo.png">
                 </a>
+                <!--Box the search keywords-->
                 <div class="ui fluid action input">
                     <input type="text" placeholder="Ключевые слова" name="keywords" onkeyup="this.value=this.value.replace(/^\s/,'')" required>
-                    <!------------------Длинная анимационная кнопка------------------>
+                    <!------------------The long animation button------------------>
                     <button type="submit" class="ui animated teal button">
-                        <!------------------Текст, если кнопка не выделена------------------>
+                        <!------------------Show this text if the button inactive------------------>
                         <div class="visible content">Найти</div>
-                        <!------------------Текст, если кнопка выделена------------------>
+                        <!------------------Show this icon if the button active------------------>
                         <div class="hidden content">
                             <i class="search icon"></i>
                         </div>
@@ -40,35 +40,19 @@
                 </div>
             </div>
             <br>
+            <!------------------Search filter settings------------------->
             <div class="ui inverted accordion">
                 <div class="title">
                     <i class="dropdown teal icon"></i>
                     Дополнительно
                 </div>
                 <div class="content">
-                    <!--
-                    <div class="ui form hint" data-content="Максимальное количество страниц поиска">
-                        <div class="field two wide">
-                            <input type="number" class="two wide" value="100" name="maxpages" required>
-                        </div>
-                    </div>
-
-                    <div class="ui checkbox hint" data-content="Выдает только те результаты, которые содержат PDF-документы">
-                        <input type="checkbox" name="openaccess">
-                        <label style="color: #FFFFFFE6">Общедоступные публикации</label>
-                    </div>
-
-                    <div class="ui checkbox" style="margin-left: 20px; margin-bottom: 15px; margin-top: 15px">
-                        <input type="checkbox" name="bucketname">
-                        <label style="color: #FFFFFFE6">Импортировать документы в базу данных</label>
-                    </div>
-                    -->
                     <div class="ui checkbox hint" style="margin-bottom: 15px; margin-top: 5px" data-content="Задействовать парсер, если слова не найдены">
                         <input type="checkbox" name="parseractive" >
                         <label style="color: #FFFFFFE6">Парсер</label>
                     </div>
 
-                    <!------------------Радиобоксы выбора языка поиска------------------>
+                    <!------------------Radioboxex for language selection------------------>
                     <div class="ui form">
                         <div class="inline fields">
                             <label style="color: #FFFFFFE6">Язык поиска:</label>
@@ -97,16 +81,22 @@
         </div>
     </form>
 
-
+    <!--The dimmer of search-->
     <div class="ui page dimmer" id="loadShow">
         <div class="segment">
             <div class="ui active dimmer">
-                <div class="ui massive text loader">Выполняем запрос...</div>
+                <h2 class="ui icon header" style="color: white">
+                    <i class="spinner loading icon"></i>
+                    <div class="content">
+                        Выполняем поиск запроса...
+                        <div class="sub header" style="color: #cbcbcb">
+                            Если вы активировали парсер, то это займет некоторое время
+                        </div>
+                    </div>
+                </h2>
             </div>
         </div>
     </div>
-
-
 
 
 <script>
@@ -116,6 +106,8 @@
     $('.hint')
         .popup()
     ;
+
+    //dynamic search launch
     $(document).ready(function () {
         $("#resultForm").submit(function () {
             $('#loadShow').dimmer('show');
