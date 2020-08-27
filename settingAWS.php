@@ -14,8 +14,8 @@
  * @var integer $maxpages maximum number of search pages for Springer
  */
 $attributes = "ID, Title, Abstract, Authors, Publisher, PublicationName, PublicationDate, Link, PDFLink";
-$access_key = 'AKIA5CG3AZL6UP7DIT64';
-$secret_key = '/lUQplZ/C1Ptamo5yXsvB4E9vzU/S4cUDiq5wA63';
+$access_key = ''; //your key
+$secret_key = ''; //your key
 $region = 'us-east-2';
 $tableNameEnglish = 'englishDataTable';
 $tableNameRussian = 'russianDataTable';
