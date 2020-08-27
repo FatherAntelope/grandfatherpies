@@ -10,3 +10,12 @@ See how the parser works: <http://grandfatherpies.team/>
 
 ### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `search.php`
 > Search results are displayed here. You can also send a search query on the same page
+
+### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `parser.php`
+> Here the query search is dynamically processed. You can also activate the parser **springerMetaInfo** or **cyberLeninkaMetaInfo** 
+
+### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `aws.php`
+> Here is a class that allows you to connect to the database and find data in a table
+
+### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `settingAWS.php`
+> Here you can find the settings for searching and connecting to [AWS](https://aws.amazon.com/)
