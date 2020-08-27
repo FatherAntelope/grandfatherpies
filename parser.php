@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'settingAWS.php';
-require_once 'aws.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/settingAWS.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aws.php';
 //echo "<pre>";
 $db = new DynamoDataBase($access_key, $secret_key, $region);
 $_SESSION['keywords'] = $_POST['keywords'];
@@ -16,7 +16,6 @@ if($_POST['checkLanguage'] == 0) {
 elseif ($_POST['checkLanguage'] == 1) {
     //На английском языке
     $results = $db->getTableData($tableNameEnglish, $attributes, $_SESSION['keywords'], 'Springer');
-    print_r($results);
     if(($results['Count'] == 0 || gettype($results) == "string") && isset($_POST['parseractive'])) {
         $commandLine = "springerMetaInfo.exe -accesskey={$access_key} -secretkey={$secret_key} -region={$region} -pktype={$pktype} -pkname=\"{$pkname}\" -sktype={$sktype} -skname=\"{$skname}\" -tablename=\"{$tableNameEnglish}\" -keywords=\"{$_SESSION['keywords']}\" -maxpages={$maxpages} -bucketname=\"{$bucketname}\"";
 

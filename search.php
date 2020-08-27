@@ -1,7 +1,7 @@
 <?
 session_start();
-require_once 'aws.php';
-require_once 'settingAWS.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aws.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/settingAWS.php';
 
 //$db = new DynamoDataBase($access_key, $secret_key, $region);
 //$attributes = "ID, Title, Abstract, Authors, Publisher, PublicationName, PublicationDate, Link, PDFLink";
@@ -11,6 +11,8 @@ if (isset($_SESSION['resultsSearch']))
     $tableData = $_SESSION['resultsSearch'];
 else
     $tableData = "string";
+
+
 
 ?>
 <!doctype html>
@@ -24,6 +26,7 @@ else
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'>
     <script src="/path/jquery.min.js"></script>
     <script src="/path/semantic.min.js"></script>
+    <link rel="icon" href="/logo.png" type="image/x-icon">
     <title>Результаты поиска</title>
 </head>
 <body style="background-image: url('background.png');">
@@ -236,7 +239,7 @@ else
             $('#loadShow').dimmer('show');
             $.ajax({
                 type: 'POST',
-                url: "parser.php",
+                url: "/parser.php",
                 data: $(this).serialize(),
             }).done(function() {
                 $('#loadShow').dimmer('hide');

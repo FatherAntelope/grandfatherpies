@@ -9,7 +9,7 @@
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'>
     <script src="/path/jquery.min.js"></script>
     <script src="/path/semantic.min.js"></script>
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="/logo.png" type="image/x-icon">
     <title>GFP Parser</title>
 </head>
 <body style="background-image: url('background.png');">
@@ -121,7 +121,7 @@
             $('#loadShow').dimmer('show');
             $.ajax({
                 type: 'POST',
-                url: "parser.php",
+                url: "/parser.php",
                 data: $(this).serialize(),
             }).done(function() {
                 $('#loadShow').dimmer('hide');

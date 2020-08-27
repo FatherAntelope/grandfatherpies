@@ -1,37 +1,32 @@
 <?php
-require 'path/aws.phar';
+require $_SERVER['DOCUMENT_ROOT'].'/path/aws.phar';
 
 use Aws\DynamoDb\Exception\DynamoDbException;
 use Aws\DynamoDb\Marshaler;
 use Aws\DynamoDb\DynamoDbClient;
 
-
+//echo "<pre>";
 
 function getArrayWords($keywords)
 {
-    $blackWords1 = ['оn', 'On', 'in', 'In', 'at', 'At', 'over', 'Over', 'under', 'Under', 'to', 'To', 'from', 'From'
-        , 'into', 'Into', 'out', 'Out', 'of', 'Of', 'off', 'Off', 'by', 'By', 'till', 'Till', 'for', 'and', 'And', 'but', 'But', 'or', 'Or', 'if', 'If',
-        'so', 'So', 'as', 'As', 'а', 'А', 'без','Без', 'в', 'В', 'до', 'До',
-        'для', 'Для', 'за', 'За', 'и', 'И', 'из', 'Из', 'к', 'К', 'на', 'На', 'над', 'Над', 'но', 'Но', 'о', 'О', 'об','Об', 'от', 'От',
-        'по', 'По', 'под', 'Под', 'пред', 'Пред', 'при', 'При', 'про', 'Про', 'с', 'С', 'у', 'У', 'через', 'Через'];
+    $arr = array();
 
     $blackWords = ['оn', 'in', 'at', 'over', 'under', 'with', 'my', 'to', 'from', 'into', 'out', 'of', 'off', 'by', 'till', 'for', 'and', 'but', 'or', 'if', 'so', 'the', 'as',
         'а', 'без', 'в', 'до', 'для', 'за', 'и', 'из', 'к', 'на', 'над', 'но','о', 'об', 'от', 'по', 'под', 'пред', 'при', 'про', 'с', 'у', 'через'];
 
-    $arr = array();
+
     $pieces = explode(" ", $keywords);
 
     $piecesWords = array_diff($pieces, $blackWords);
 
     foreach ($piecesWords as $word)
     {
-        $arr[] = mb_strtoupper($word);
-        $arr[] = mb_convert_case($word, MB_CASE_TITLE, "UTF-8");
-        $arr[] = mb_strtolower($word);
+        $arr[] = " ".mb_strtolower($word)." ";
     }
 
     return $arr;
 }
+
 
 
 
@@ -51,27 +46,28 @@ class DynamoDataBase
     }
 
 
-
     public function getTableData($tableName, $projectionExpression, $keywords, $valueKeyCondition)
     {
         $arrWords = getArrayWords($keywords);
+
         if(count($arrWords) == 0)
             return "error";
+
         $str = '';
 
         //Cyberleninka or Springer
-        $mp = array(':Publisher'=> $valueKeyCondition); //подготавливаю почву для ExpressionAttributeValues)
+        $mp = array(':Publisher'=> $valueKeyCondition);
 
-        foreach($arrWords as $key=>$value){ //тут я очень всрато генерирую исходный ассоц.массив для джейсона для ExpressionAttributeValues и строчку для FilterExpression
+        foreach($arrWords as $key=>$value) {
             $substr = ":Word".strval($key);
             $mp[$substr]=$value;
-            $str.="contains(Abstract, ".$substr.") or contains(Title, ".$substr.") or "; //не судите строго я второй день в php
+            $str.="contains(Keywords, ".$substr.") or ";
         }
 
 
-        $str = substr($str,0,-4); //отсекаю последний " or "
+        $str = substr($str,0,-4);
         $marshaler = new Marshaler();
-        $eav = $marshaler->marshalItem($mp); //преобразовываю исходный ассоц. массив в джейсон
+        $eav = $marshaler->marshalItem($mp);
 
         $params = [
             'TableName' => $tableName,
@@ -91,7 +87,7 @@ class DynamoDataBase
 }
 
 /*
-$string = 'Data base';
+$string = 'in data';
 
 $limit = 10;
 require_once 'settingAWS.php';
