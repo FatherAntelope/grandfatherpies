@@ -20,6 +20,10 @@ See how the parser works: <http://grandfatherpies.team/>
 ### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `settingAWS.php`
 > Here you can find the settings for searching and connecting to [AWS](https://aws.amazon.com/)
 
+## Folders
+### ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `path`
+> Here you can find packages for connecting to **Amazon Web Services** and the **Semantic UI** framework
+
 ## Other application 
 ### ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `springerMetaInfo.exe` or `springerMetaInfo.elf`
-The parser in **Python**. Information about this application is located on this repository: [Click](https://github.com/akmubi/springerMetaParserUltraDoNotUse)
+> The parser in **Python**. Information about this application is located on this repository: [Click](https://github.com/akmubi/springerMetaParserUltraDoNotUse)
