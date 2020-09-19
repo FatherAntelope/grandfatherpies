@@ -19,6 +19,22 @@ See how the parser works: <http://grandfatherpies.team/>
 
 ### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `settingAWS.php`
 > Here you can find the settings for searching and connecting to [AWS](https://aws.amazon.com/)
+1. Before using executable you must get **an access key ID** and **a secret access key** from your administrator in Amazon IMA and ask for following rights:
++ ListTables
++ DescribeTable
++ CreateTable
++ DeleteItem
++ DeleteTable
++ PutItem
+2. If you want to upload PDF files to S3, ask your administrator for theese rights:
++ ListBucket
++ CreateBucket
++ ListAllMyBuckets
++ DeleteBucket
++ PutObject
++ GetObject
++ DeleteObject
+3. Find out database region
 
 ## Folders
 ### ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `path`
