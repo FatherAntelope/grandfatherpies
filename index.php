@@ -12,11 +12,25 @@
     <link rel="icon" href="/logo.png" type="image/x-icon">
     <title>GFP Parser</title>
 </head>
-<body style="background-image: url('background.png');">
+<style>
+    body
+    {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        background-image: url('background.png');
+    }
+    .search-box
+    {
+        width: 80%;
+    }
+</style>
+<body>
 
     <!------------------White box (segment)------------------>
-    <form method="post" id="resultForm">
-        <div class="ui inverted segment  raised" style="width: 1000px; position: absolute; left: 50%; top:30%; margin-left: -500px;">
+    <form method="post" id="resultForm" class="search-box">
+        <div class="ui inverted segment  raised">
             <!------------------Top header (Name Project)------------------>
             <h2 class="ui icon center aligned header green">
                 <div class="content">GrandFatherPies Parser</div>
@@ -27,7 +41,7 @@
                 </a>
                 <!--Box the search keywords-->
                 <div class="ui fluid action input">
-                    <input type="text" placeholder="Ключевые слова" name="keywords" onkeyup="this.value=this.value.replace(/^\s/,'')" required>
+                    <input type="text" placeholder="Ключевые слова. Например: AI" name="keywords" onkeyup="this.value=this.value.replace(/^\s/,'')" required>
                     <!------------------The long animation button------------------>
                     <button type="submit" class="ui animated teal button">
                         <!------------------Show this text if the button inactive------------------>
@@ -47,7 +61,7 @@
                     Дополнительно
                 </div>
                 <div class="content">
-                    <div class="ui checkbox hint" style="margin-bottom: 15px; margin-top: 5px" data-content="Задействовать парсер, если слова не найдены">
+                    <div class="ui checkbox hint" style="margin-bottom: 15px; margin-top: 5px" data-content="Задействовать парсер, если слова не найдены (Экспериментально. Только для EN)">
                         <input type="checkbox" name="parseractive" >
                         <label style="color: #FFFFFFE6">Парсер</label>
                     </div>
@@ -58,13 +72,13 @@
                             <label style="color: #FFFFFFE6">Язык поиска:</label>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="checkLanguage" value=0 checked="checked">
+                                    <input type="radio" name="checkLanguage" value=0 disabled>
                                     <label style="color: #FFFFFFE6">Любой</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="checkLanguage" value=1 >
+                                    <input type="radio" name="checkLanguage" value=1 checked="checked">
                                     <label style="color: #FFFFFFE6">Английский</label>
                                 </div>
                             </div>

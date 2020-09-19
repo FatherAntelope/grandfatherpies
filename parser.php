@@ -9,8 +9,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aws.php';
  */
 $db = new DynamoDataBase($access_key, $secret_key, $region);
 $_SESSION['keywords'] = $_POST['keywords'];
-
-
+//$_POST['checkLanguage'] = 1;
+//$_POST['parseractive'] = true;
 $results = null;
 
 /**
@@ -32,7 +32,7 @@ elseif ($_POST['checkLanguage'] == 1) {
          * if the application is running on OS Windows, then enter springerMetaInfo.exe
          * if the application is running on OS Linux, then enter ./springerMetaInfo.elf
          */
-        $commandLine = "springerMetaInfo.exe -accesskey={$access_key} -secretkey={$secret_key} -region={$region} -pktype={$pktype} -pkname=\"{$pkname}\" -sktype={$sktype} -skname=\"{$skname}\" -tablename=\"{$tableNameEnglish}\" -keywords=\"{$_SESSION['keywords']}\" -maxpages={$maxpages} -bucketname=\"{$bucketname}\"";
+        $commandLine = "./springerMetaInfo.elf -accesskey={$access_key} -secretkey={$secret_key} -apikey={$apikeySpringer} -region={$region} -pktype={$pktype} -pkname=\"{$pkname}\" -sktype={$sktype} -skname=\"{$skname}\" -tablename=\"{$tableNameEnglish}\" -keywords=\"{$_SESSION['keywords']}\" -maxpages={$maxpages} -bucketname=\"{$bucketname}\"";
 
         //launch the command line
         exec($commandLine);
@@ -61,4 +61,5 @@ $arr = array(
 
 //save the array data to the session
 $_SESSION['resultsSearch'] = $arr;
+//print_r($_SESSION['resultsSearch']);
 ?>

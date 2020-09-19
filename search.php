@@ -60,7 +60,7 @@ else
                 Дополнительно
             </div>
             <div class="content">
-                <div class="ui checkbox hint" style="margin-bottom: 15px; margin-top: 5px" data-content="Задействовать парсер, если слова не найдены">
+                <div class="ui checkbox hint" style="margin-bottom: 15px; margin-top: 5px" data-content="Задействовать парсер, если слова не найдены (Экспериментально. Только для EN)">
                     <input type="checkbox" name="parseractive">
                     <label style="color: #FFFFFFE6">Парсер</label>
                 </div>
@@ -71,7 +71,7 @@ else
                         <label style="color: #FFFFFFE6">Язык поиска:</label>
                         <div class="field">
                             <div class="ui radio checkbox">
-                                <input type="radio" name="checkLanguage" value=0 <? if($_SESSION['checkLanguage'] == 0) echo "checked"; ?>>
+                                <input type="radio" name="checkLanguage" value=0 <? if($_SESSION['checkLanguage'] == 0) echo "checked"; ?> disabled>
                                 <label style="color: #FFFFFFE6">Любой</label>
                             </div>
                         </div>

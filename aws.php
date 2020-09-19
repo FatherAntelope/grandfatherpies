@@ -76,7 +76,7 @@ class DynamoDataBase {
          * @var array keys for ExpressionAttributeValues
          * @param string $valueKeyCondition Springer or Cyberleninka
          */
-        $mp = array(':Publisher'=> $valueKeyCondition);
+        $mp = array(':ValueKeyCondition'=> $valueKeyCondition);
 
         //fills in keys for ExpressionAttributeValues and a string to filter
         foreach($arrWords as $key=>$value) {
@@ -97,7 +97,7 @@ class DynamoDataBase {
         $params = [
             'TableName' => $tableName,
             'ProjectionExpression' => $projectionExpression,
-            'KeyConditionExpression' => 'Publisher = :Publisher',
+            'KeyConditionExpression' => 'Publisher = :ValueKeyCondition',
             'FilterExpression' => $str,
             'ExpressionAttributeValues'=> $eav
         ];
@@ -113,4 +113,13 @@ class DynamoDataBase {
         }
     }
 }
+/*
+require_once $_SERVER['DOCUMENT_ROOT'].'/settingAWS.php';
+$db = new DynamoDataBase($access_key, $secret_key, $region);
+$keywords = "Big data";
+$tableData = $db->getTableData($tableNameEnglish, $attributes, $keywords, '0');
+
+echo "<pre>";
+print_r($tableData);
+*/
 ?>
